@@ -1,0 +1,25 @@
+.img-container {
+  margin-top: -8vh;
+  position: relative;
+  border-radius: 5px;
+  height: 25vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+  // filter: hue-rotate(90deg);
+  background-position: center -10px;
+  // background: linear-gradient(rgba(255, 0, 0, 0.45), rgba(255, 0, 0, 0.45));
+  box-shadow: 5px 10px 18px #888888;
+}
+.profile-pic {
+  position: absolute;
+  box-shadow: 5px 10px 18px #888888;
+  top: 50%;
+  left: 50%;
+  transform: translateX(50%);
+  border: 1px solid grey;
+  width: 15vh;
+  height: 15vh;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center right;
+}
