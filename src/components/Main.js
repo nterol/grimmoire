@@ -21,7 +21,6 @@ class Main extends Component {
 
   nodeViewer = ({ target: { id } }) => {
     const [nodeId, type] = id.split("_");
-    console.log(nodeId, type);
     this.setState({ linkView: false, nodeView: { nodeId, type } });
 
     // this.setState({ linkView: false, nodeView: { id, type } });

@@ -71,6 +71,7 @@ class Node extends Component {
           d="M 120,70 v50 Q 120,130 110,130 h-100 Q 0,130 0,120 v-50 z"
         />
         <text
+          id={`${id}_${type}`}
           dx="10"
           dy="90"
           fill={selected ? "blue" : "black"}

@@ -11,7 +11,7 @@ const Header = ({ id }) => {
           backgroundImage: `url(${ProfilePic[id]})`
         }}
       >
-        <img className="profile-pic" src={ProfilePic[id]} />
+        <img className="profile-pic" src={ProfilePic[id]} alt="profile" />
       </div>
     </div>
   );

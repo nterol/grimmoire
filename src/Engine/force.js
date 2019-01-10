@@ -3,10 +3,11 @@ import ReactDOM from "react-dom";
 
 /* eslint-disable */
 const FORCE = (function(nsp) {
-  console.log("FORCE PARAM", nsp);
-  const width = 1080,
-    height = 1000,
-    color = d3.scaleOrdinal(d3.schemeCategory10),
+  let width = 1030,
+    height = 1000;
+
+  const setWidth = w => (nsp.width = w),
+    setHeight = h => (nsp.height = h),
     initForce = (nodes, links) => {
       nsp.force = d3
         .forceSimulation(nodes)
@@ -23,8 +24,10 @@ const FORCE = (function(nsp) {
           "center",
           d3
             .forceCenter()
-            .x(nsp.width / 2)
-            .y(nsp.height / 2)
+            .x(width / 2)
+            .y(height / 2)
+          // .x(nsp.width / 2)
+          // .y(nsp.height / 2)
         )
         .force(
           "collide",
@@ -71,6 +74,7 @@ const FORCE = (function(nsp) {
         .attr("y2", d => d.target.y);
     },
     updateGraph = selection => {
+      // console.log(selection, width, height);
       selection.selectAll(".node").call(updateNode);
       selection.selectAll(".link").call(updateLink);
     },
@@ -102,9 +106,12 @@ const FORCE = (function(nsp) {
         that.d3Graph.call(updateGraph);
       });
     };
+  // color = d3.scaleOrdinal(d3.schemeCategory10),
 
-  nsp.width = width;
   nsp.height = height;
+  nsp.width = width;
+  nsp.setHeight = setHeight;
+  nsp.setWidth = setWidth;
   nsp.enterNode = enterNode;
   nsp.updateNode = updateNode;
   nsp.updateLink = updateLink;
@@ -115,6 +122,11 @@ const FORCE = (function(nsp) {
   nsp.dragEnded = dragEnded;
   nsp.drag = drag;
   nsp.tick = tick;
+  // nsp.width = width;
+  // nsp.height = height;
+  // nsp.resetWidth = resetWidth;
+  // nsp.resetHeight = resetHeight;
+  // nsp.resetDim = resetDim;
 
   return nsp;
 })(FORCE || {});

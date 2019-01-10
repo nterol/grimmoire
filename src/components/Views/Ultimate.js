@@ -6,6 +6,7 @@
 */
 
 import React, { Component } from "react";
+import ResizeObserver from "resize-observer-polyfill";
 
 import FORCE from "../../Engine/force";
 
@@ -24,10 +25,29 @@ export default class Ultimate extends Component {
     addLinkArray: [],
     name: "",
     nodes: graph.nodes,
-    links: graph.edges
+    links: graph.edges,
+    width: null,
+    height: null
   };
 
   componentDidMount() {
+    const ro = new ResizeObserver((entries, observer) => {
+      for (const entry of entries) {
+        const { height, width } = entry.contentRect;
+        const { width: stateWidth, height: stateHeight } = this.state;
+        stateWidth !== width &&
+          stateHeight !== height &&
+          this.setState(prevState => {
+            FORCE.stateHeight(height);
+            FORCE.setWidth(width);
+            return { ...prevState, width, height };
+          });
+
+        // console.log("Element:", entry.target);
+        // console.log(`Elementx's size: WIDTH: ${width}px x HEIGHT: ${height}px`);
+      }
+    });
+    ro.observe(this.gContainer);
     const { nodes, links } = this.state;
     FORCE.initForce(nodes, links);
     FORCE.tick(this);
@@ -35,6 +55,10 @@ export default class Ultimate extends Component {
   }
 
   componentDidUpdate(prevProps, { nodes: prevNodes, links: prevLinks }) {
+    // const { width: w, height: h } = this.state;
+    // FORCE.resetWidth(w);
+    // FORCE.resetHeight(h);
+
     const { nodes, links } = this.state;
     if (prevNodes !== nodes || prevLinks !== links) {
       FORCE.initForce(nodes, links);
@@ -51,14 +75,16 @@ export default class Ultimate extends Component {
 
   addNode = e => {
     e.preventDefault();
-    this.setState(prevState => ({
+    this.setState(({ nodes: prevNodes, width, height }) => ({
       nodes: [
-        ...prevState.nodes,
+        ...prevNodes,
         {
           name: this.state.name,
-          id: prevState.nodes.length + 1,
-          x: FORCE.width / 2,
-          y: FORCE.height / 2
+          id: prevNodes.length + 1,
+          x: width / 2,
+          y: height / 2
+          // x: FORCE.width / 2,
+          // y: FORCE.height / 2
         }
       ],
       name: ""
@@ -67,6 +93,7 @@ export default class Ultimate extends Component {
 
   render() {
     const { links, nodes } = this.state;
+
     var linksList = links.map(link => {
       return <Link key={link.id} data={link} />;
     });
@@ -74,7 +101,10 @@ export default class Ultimate extends Component {
       return <Node data={node} name={node.name} key={node.id} />;
     });
     return (
-      <div className="graph_container">
+      <div
+        className="graph_container"
+        ref={gContainer => (this.gContainer = gContainer)}
+      >
         <svg
           className="graph"
           preserveAspectRatio="xMidYMid meet"

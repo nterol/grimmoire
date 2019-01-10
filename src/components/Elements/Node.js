@@ -6,6 +6,9 @@ const Node = ({
   onHover,
   onOut
 }) => {
+  const imgLoader = () => {
+    console.log("loaded");
+  };
   return (
     <g transform={`translate(${x > 0 ? x - 75 : 0}, ${y})`}>
       <rect
@@ -32,6 +35,7 @@ const Node = ({
         {party}
       </text>
       <image
+        onLoad={imgLoader}
         height="25"
         width="25"
         x="100"
