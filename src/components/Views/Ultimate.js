@@ -38,7 +38,7 @@ export default class Ultimate extends Component {
         stateWidth !== width &&
           stateHeight !== height &&
           this.setState(prevState => {
-            FORCE.stateHeight(height);
+            FORCE.setHeight(height);
             FORCE.setWidth(width);
             return { ...prevState, width, height };
           });
