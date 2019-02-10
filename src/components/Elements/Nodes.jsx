@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import FORCE from "../../Engine/force";
 import * as d3 from "d3";
 
-import ProfilePic from "../../assets/";
+import ProfilePic from "../../assets";
 
 import { MainContext } from "../Main";
 
@@ -29,8 +29,9 @@ class Node extends Component {
   render() {
     const { selected } = this.state;
     const {
-      data: { name, id, type, anon = false }
+      data: { name, id, type, anon = false, x = 0, y = 0 }
     } = this.props;
+    console.log(`translate(${x > 0 ? x - 75 : 0}, ${y})`);
     // const cx = Math.max(30, Math.min(FORCE.width - 30, x));
     // const cy = Math.max(30, Math.min(FORCE.height - 30, y));
 
@@ -41,6 +42,7 @@ class Node extends Component {
         ref={node => (this.node = node)}
         onMouseEnter={this.selectNode}
         onMouseLeave={this.selectNode}
+        transform={`translate(${x > 0 ? x - 75 : 0}, ${y})`}
       >
         <clipPath id="node-cover">
           <path

@@ -6,8 +6,12 @@ const FORCE = (function(nsp) {
   let width = 1030,
     height = 1000;
 
-  const setWidth = w => (nsp.width = w),
-    setHeight = h => (nsp.height = h),
+  const setWidth = w => {
+      nsp.width = w;
+    },
+    setHeight = h => {
+      nsp.height = h;
+    },
     initForce = (nodes, links) => {
       nsp.force = d3
         .forceSimulation(nodes)
@@ -24,8 +28,8 @@ const FORCE = (function(nsp) {
           "center",
           d3
             .forceCenter()
-            .x(width / 2)
-            .y(height / 2)
+            .x(nsp.width / 2)
+            .y(nsp.height / 2)
           // .x(nsp.width / 2)
           // .y(nsp.height / 2)
         )
@@ -54,9 +58,9 @@ const FORCE = (function(nsp) {
     updateNode = selection => {
       selection.attr("transform", ({ x, y }) => {
         if (x < 0) x = 250;
-        if (x > width) x = width - 200;
+        if (x > nsp.width) x = nsp.width - 200;
         if (y < 0) y = 200;
-        if (y > height) y = height;
+        if (y > nsp.height) y = nsp.height;
         return "translate(" + (x - 60) + "," + (y - 60) + ")";
       });
       // .attr("cx", ({ x }) => {
@@ -101,6 +105,7 @@ const FORCE = (function(nsp) {
           .on("end", dragEnded)
       ),
     tick = that => {
+      console.log("tick", that);
       that.d3Graph = d3.select(ReactDOM.findDOMNode(that));
       nsp.force.on("tick", () => {
         that.d3Graph.call(updateGraph);
