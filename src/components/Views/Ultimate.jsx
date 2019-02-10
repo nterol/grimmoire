@@ -8,10 +8,10 @@
 import React, { Component } from "react";
 import ResizeObserver from "resize-observer-polyfill";
 
-import FORCE from "../../Engine/force";
-
-import Link from "../Elements/Links";
-import Node from "../Elements/Nodes";
+import FORCE from "../../engine/force";
+import { LinkList } from "../elements/LinkList";
+import { NodeList } from "../elements/NodeList";
+import { CenterNode } from "../center-node/CenterNode";
 
 import graph from "../data/happy.json";
 
@@ -58,10 +58,6 @@ export default class Ultimate extends Component {
   }
 
   componentDidUpdate(prevProps, { nodes: prevNodes, links: prevLinks }) {
-    // const { width: w, height: h } = this.state;
-    // FORCE.resetWidth(w);
-    // FORCE.resetHeight(h);
-
     const { nodes, links } = this.state;
     if (prevNodes !== nodes || prevLinks !== links) {
       FORCE.initForce(nodes, links);
@@ -70,41 +66,13 @@ export default class Ultimate extends Component {
     }
   }
 
-  handleAddNode = ({ target: { name, value } }) => {
-    this.setState({
-      [name]: value
-    });
-  };
-
-  addNode = e => {
-    e.preventDefault();
-    this.setState(({ nodes: prevNodes, width, height }) => ({
-      nodes: [
-        ...prevNodes,
-        {
-          name: this.state.name,
-          id: prevNodes.length + 1,
-          x: width / 2,
-          y: height / 2
-          // x: FORCE.width / 2,
-          // y: FORCE.height / 2
-        }
-      ],
-      name: ""
-    }));
+  nodeView = ({ target: { id } }) => {
+    const [nodeId, type] = id.split("_");
+    this.setState({ linkView: false, nodeview: { nodeId, type } });
   };
 
   render() {
-    const { links, nodes } = this.state;
-
-    var linksList = links.map(link => {
-      return <Link key={link.id} data={link} />;
-    });
-    var nodesList = nodes.map(node => {
-      return <Node data={node} name={node.name} key={node.id} />;
-    });
-
-    const { width, height } = this.state;
+    const { width, height, links, nodes } = this.state;
     return (
       <div
         className="graph_container"
@@ -116,9 +84,10 @@ export default class Ultimate extends Component {
           width={width}
           height={height}
         >
-          {linksList}
-          {nodesList}
+          <LinkList links={links} />
+          <NodeList nodes={nodes} />
         </svg>
+        <CenterNode />
       </div>
     );
   }

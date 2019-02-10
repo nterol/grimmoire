@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
-import FORCE from "../../Engine/force";
+import FORCE from "../../engine/force";
 import * as d3 from "d3";
 
 import ProfilePic from "../../assets";
 
 import { MainContext } from "../Main";
 
-class Node extends Component {
+class RawNode extends Component {
   state = {
     selected: false
   };
@@ -21,6 +21,10 @@ class Node extends Component {
     this.d3Node.datum(this.props.data).call(FORCE.updateNode);
   }
 
+  componentWillUnmount() {
+    this.node.removeEventListener("click", this.props.context.nodeViewer);
+  }
+
   selectNode = () =>
     this.setState(({ selected: prevSelected }) => ({
       selected: !prevSelected
@@ -31,7 +35,6 @@ class Node extends Component {
     const {
       data: { name, id, type, anon = false, x = 0, y = 0 }
     } = this.props;
-    console.log(`translate(${x > 0 ? x - 75 : 0}, ${y})`);
     // const cx = Math.max(30, Math.min(FORCE.width - 30, x));
     // const cy = Math.max(30, Math.min(FORCE.height - 30, y));
 
@@ -90,8 +93,8 @@ class Node extends Component {
   }
 }
 
-export default React.forwardRef((props, ref) => (
+export const Node = React.forwardRef((props, ref) => (
   <MainContext.Consumer>
-    {context => <Node {...props} context={context} ref={ref} />}
+    {context => <RawNode {...props} context={context} ref={ref} />}
   </MainContext.Consumer>
 ));

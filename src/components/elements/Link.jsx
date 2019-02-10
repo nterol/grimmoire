@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import ReactDOM from "react-dom";
 import * as d3 from "d3";
 
@@ -11,7 +11,7 @@ const colorPalette = {
   A: "#171815"
 };
 
-class Link extends Component {
+class RawLink extends PureComponent {
   componentDidMount() {
     this.d3Link = d3.select(ReactDOM.findDOMNode(this)).datum(this.props.data);
     this.line.addEventListener("click", this.props.context.linkViewer);
@@ -51,8 +51,8 @@ class Link extends Component {
   }
 }
 
-export default React.forwardRef((props, ref) => (
+export const Link = React.forwardRef((props, ref) => (
   <MainContext.Consumer>
-    {context => <Link {...props} context={context} ref={ref} />}
+    {context => <RawLink {...props} context={context} ref={ref} />}
   </MainContext.Consumer>
 ));
