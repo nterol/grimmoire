@@ -26,6 +26,10 @@ export default class Ultimate extends Component {
     name: "",
     nodes: graph.nodes,
     links: graph.edges,
+    relatedNodes: [],
+    relatedLinks: [],
+    nodeView: false,
+    linkView: false,
     width: null,
     height: null
   };
@@ -68,7 +72,11 @@ export default class Ultimate extends Component {
 
   nodeView = ({ target: { id } }) => {
     const [nodeId, type] = id.split("_");
-    this.setState({ linkView: false, nodeview: { nodeId, type } });
+
+    this.setState({
+      linkView: false,
+      nodeView: { nodeId, type }
+    });
   };
 
   render() {
