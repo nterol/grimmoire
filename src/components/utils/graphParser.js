@@ -1,32 +1,16 @@
-function findNode(page) {
-  return graph.nodes.find(({ id }) => id === page);
-}
+export const graphParser = (id, links, nodes) => {};
 
-function getNodes(dictionnary) {
-  return dictionnary.map(findNode);
-}
+const getNodeInLinks = ({ source, target }) => id =>
+  source === id || target === id;
 
-function dictionnaryPurifier(dictionnary, id) {
-  return dictionnary.filter(page => page !== id);
-}
+const getUniqueNode = node => id => node !== id;
 
-function linkReducer(dictionnary, { source, target }) {
-  if (!dictionnary.length) dictionnary = [];
-  return [...dictionnary, source, target];
-}
+const filterList = list => func => list.filter(func);
 
-function createDictionnary(links) {
-  return links.reduce(linkReducer);
-}
+const filterLinks = id => links => filterList(links)(getNodeInLinks(id));
 
-function linkReferenceChecker({ source, target }, id) {
-  return source === id || target === id;
-}
+const createDictionnary = links => filterLinks(links)(getUniqueNode);
 
-function filterLink({ links }, id) {
-  links.filter(linkReducerChecker);
-}
+const getNode = dictionnary => dictionnary.map;
 
-export function graphFromNodeParser({ id, type }, graph) {
-  filterLink(graph, id);
-}
+const findPageInNode = page => nodes => {};

@@ -12,6 +12,7 @@ import FORCE from "../../engine/force";
 import { LinkList } from "../elements/LinkList";
 import { NodeList } from "../elements/NodeList";
 import { CenterNode } from "../center-node/CenterNode";
+import { graphParser } from "../utils/graphParser";
 
 import graph from "../data/happy.json";
 
@@ -72,11 +73,16 @@ export default class Ultimate extends Component {
 
   nodeView = ({ target: { id } }) => {
     const [nodeId, type] = id.split("_");
-
+    const { nodes, links } = this.state;
+    this.getFilteredGraph(nodeId, nodes, links);
     this.setState({
       linkView: false,
       nodeView: { nodeId, type }
     });
+  };
+
+  getFilteredGraph = (id, nodes, links) => {
+    graphParser(id);
   };
 
   render() {
