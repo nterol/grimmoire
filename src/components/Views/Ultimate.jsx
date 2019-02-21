@@ -71,18 +71,25 @@ export default class Ultimate extends Component {
     }
   }
 
-  nodeView = ({ target: { id } }) => {
+  nodeView = async ({ target: { id } }) => {
     const [nodeId, type] = id.split("_");
     const { nodes, links } = this.state;
-    this.getFilteredGraph(nodeId, nodes, links);
-    this.setState({
+    const { filterdNodes, filterdLinks } = await this.getFilteredGraph(
+      nodeId,
+      links,
+      nodes
+    );
+    this.setState(prevState => ({
+      ...prevState,
       linkView: false,
-      nodeView: { nodeId, type }
-    });
+      nodeView: { nodeId, type },
+      relatedNodes: filterdNodes,
+      relatedLinks: filterdLinks
+    }));
   };
 
-  getFilteredGraph = (id, nodes, links) => {
-    graphParser(id);
+  getFilteredGraph = (id, links, nodes) => {
+    graphParser(id, links, nodes);
   };
 
   render() {
