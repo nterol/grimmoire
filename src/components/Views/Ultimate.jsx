@@ -63,7 +63,13 @@ export default class Ultimate extends Component {
   }
 
   componentDidUpdate(prevProps, { nodes: prevNodes, links: prevLinks }) {
-    const { nodes, links } = this.state;
+    console.log("DID UPDATE");
+    const { nodes, links, relatedNodes, relatedLinks } = this.state;
+    if (!!relatedNodes.length && !!relatedLinks.length) {
+      FORCE.initForce(relatedNodes, relatedLinks);
+      FORCE.tick(this);
+      FORCE.drag();
+    }
     if (prevNodes !== nodes || prevLinks !== links) {
       FORCE.initForce(nodes, links);
       FORCE.tick(this);
