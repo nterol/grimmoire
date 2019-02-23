@@ -20,6 +20,7 @@ class Main extends Component {
     this.setState({ linkView: id, nodeView: false });
 
   nodeViewer = ({ target: { id } }) => {
+    console.log("coucou");
     const [nodeId, type] = id.split("_");
     this.setState({ linkView: false, nodeView: { nodeId, type } });
 

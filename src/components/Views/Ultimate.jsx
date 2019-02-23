@@ -16,10 +16,7 @@ import { graphParser } from "../utils/graphParser";
 
 import graph from "../data/happy.json";
 
-// const simpleGraph = {
-//   nodes: [{ id: "A", title: "A" }, { id: "B", title: "B" }],
-//   links: [{ id: "a-b", source: "A", target: "B" }]
-// };
+export const GraphContext = React.createContext();
 
 export default class Ultimate extends Component {
   state = {
@@ -39,10 +36,8 @@ export default class Ultimate extends Component {
     const ro = new ResizeObserver((entries, observer) => {
       for (const entry of entries) {
         const { height, width } = entry.contentRect;
-        console.log(`constat w:${width}, h:${height}`);
         const { width: stateWidth, height: stateHeight } = this.state;
         if (stateWidth !== width || stateHeight !== height) {
-          console.log("heeeyyyyy");
           this.setState(
             prevState => {
               return { ...prevState, width, height };
@@ -77,45 +72,59 @@ export default class Ultimate extends Component {
     }
   }
 
-  nodeView = async ({ target: { id } }) => {
+  nodeSelector = async ({ target: { id } }) => {
     const [nodeId, type] = id.split("_");
     const { nodes, links } = this.state;
-    const { filterdNodes, filterdLinks } = await this.getFilteredGraph(
+
+    const { filteredNodes, filteredLinks } = await this.getFilteredGraph(
       nodeId,
       links,
       nodes
     );
+    console.log("NODE FIlter", filteredNodes, filteredLinks);
     this.setState(prevState => ({
       ...prevState,
       linkView: false,
       nodeView: { nodeId, type },
-      relatedNodes: filterdNodes,
-      relatedLinks: filterdLinks
+      relatedNodes: filteredNodes,
+      relatedLinks: filteredLinks
     }));
   };
 
   getFilteredGraph = (id, links, nodes) => {
-    graphParser(id, links, nodes);
+    return graphParser(id, links, nodes);
   };
 
+  linkSelector = ({ target: { id } }) =>
+    this.setState({ linkView: id, nodeView: false });
+
   render() {
-    const { width, height, links, nodes } = this.state;
+    const { width, height, links, nodes, nodeView, linkView } = this.state;
     return (
-      <div
-        className="graph_container"
-        ref={gContainer => (this.gContainer = gContainer)}
+      <GraphContext.Provider
+        value={{
+          nodeSelector: this.nodeSelector,
+          linkSelector: this.linkSelector,
+          linkView,
+          nodeView
+        }}
       >
-        <svg
-          className="graph"
-          preserveAspectRatio="xMidYMid meet"
-          width={width}
-          height={height}
+        <div
+          className="graph_container"
+          ref={gContainer => (this.gContainer = gContainer)}
         >
-          <LinkList links={links} />
-          <NodeList nodes={nodes} />
-        </svg>
-        <CenterNode />
-      </div>
+          <svg
+            className="graph"
+            preserveAspectRatio="xMidYMid meet"
+            width={width}
+            height={height}
+          >
+            <LinkList links={links} />
+            <NodeList nodes={nodes} nodeSelector={this.nodeView} />
+          </svg>
+          {nodeView || (linkView && <CenterNode />)}s
+        </div>
+      </GraphContext.Provider>
     );
   }
 }

@@ -105,7 +105,7 @@ const FORCE = (function(nsp) {
           .on("end", dragEnded)
       ),
     tick = that => {
-      console.log("tick", that);
+      // console.log("tick", that);
       that.d3Graph = d3.select(ReactDOM.findDOMNode(that));
       nsp.force.on("tick", () => {
         that.d3Graph.call(updateGraph);

@@ -5,7 +5,7 @@ import * as d3 from "d3";
 
 import ProfilePic from "../../assets";
 
-import { MainContext } from "../Main";
+import { GraphContext } from "../Views/Ultimate";
 
 class RawNode extends Component {
   state = {
@@ -14,7 +14,7 @@ class RawNode extends Component {
 
   componentDidMount() {
     this.d3Node = d3.select(ReactDOM.findDOMNode(this)).datum(this.props.data); //   .call(FORCE.enterNode);
-    this.node.addEventListener("click", this.props.context.nodeViewer);
+    this.node.addEventListener("click", this.props.context.nodeSelector);
   }
 
   componentDidUpdate() {
@@ -22,25 +22,27 @@ class RawNode extends Component {
   }
 
   componentWillUnmount() {
-    this.node.removeEventListener("click", this.props.context.nodeViewer);
+    this.node.removeEventListener("click", this.props.context.nodeSelector);
   }
 
   selectNode = () =>
-    this.setState(({ selected: prevSelected }) => ({
-      selected: !prevSelected
-    }));
+    this.setState(({ selected: prevSelected }) => {
+      return {
+        selected: !prevSelected
+      };
+    });
 
   render() {
     const { selected } = this.state;
     const {
       data: { name, id, type, anon = false, x = 0, y = 0 }
     } = this.props;
+
     // const cx = Math.max(30, Math.min(FORCE.width - 30, x));
     // const cy = Math.max(30, Math.min(FORCE.height - 30, y));
 
     return (
       <g
-        // ref={node => (this.node = node)}
         className="node"
         ref={node => (this.node = node)}
         onMouseEnter={this.selectNode}
@@ -94,7 +96,7 @@ class RawNode extends Component {
 }
 
 export const Node = React.forwardRef((props, ref) => (
-  <MainContext.Consumer>
+  <GraphContext.Consumer>
     {context => <RawNode {...props} context={context} ref={ref} />}
-  </MainContext.Consumer>
+  </GraphContext.Consumer>
 ));
