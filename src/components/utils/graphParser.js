@@ -12,6 +12,7 @@ const getNodesFromDictionnary = dictionnary => nodes =>
   dictionnary.map(page => findNode({ page, nodes }));
 
 export function graphParser(id, links, nodes) {
+  console.log("MARK");
   const filteredLinks = links.filter(
     ({ source, target }) => source.id === id || target.id === id
   );

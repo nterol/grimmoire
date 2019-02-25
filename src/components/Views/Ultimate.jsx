@@ -20,12 +20,10 @@ export const GraphContext = React.createContext();
 
 export default class Ultimate extends Component {
   state = {
-    addLinkArray: [],
-    name: "",
     nodes: graph.nodes,
     links: graph.edges,
-    relatedNodes: [],
-    relatedLinks: [],
+    filteredNodes: false,
+    filteredLinks: false,
     nodeView: false,
     linkView: false,
     width: null,
@@ -58,13 +56,13 @@ export default class Ultimate extends Component {
   }
 
   componentDidUpdate(prevProps, { nodes: prevNodes, links: prevLinks }) {
-    console.log("DID UPDATE");
-    const { nodes, links, relatedNodes, relatedLinks } = this.state;
-    if (!!relatedNodes.length && !!relatedLinks.length) {
-      FORCE.initForce(relatedNodes, relatedLinks);
-      FORCE.tick(this);
-      FORCE.drag();
-    }
+    const { nodes, links } = this.state;
+    console.log("DID UPDATE", this.state);
+    // if (!!relatedNodes.length && !!relatedLinks.length) {
+    //   FORCE.initForce(relatedNodes, relatedLinks);
+    //   FORCE.tick(this);
+    //   FORCE.drag();
+    // }
     if (prevNodes !== nodes || prevLinks !== links) {
       FORCE.initForce(nodes, links);
       FORCE.tick(this);
@@ -72,34 +70,24 @@ export default class Ultimate extends Component {
     }
   }
 
-  nodeSelector = async ({ target: { id } }) => {
+  nodeSelector = ({ target: { id } }) => {
     const [nodeId, type] = id.split("_");
     const { nodes, links } = this.state;
-
-    const { filteredNodes, filteredLinks } = await this.getFilteredGraph(
-      nodeId,
-      links,
-      nodes
-    );
-    console.log("NODE FIlter", filteredNodes, filteredLinks);
-    this.setState(prevState => ({
-      ...prevState,
-      linkView: false,
+    const { filteredNodes, filteredLinks } = graphParser(nodeId, links, nodes);
+    this.setState({
       nodeView: { nodeId, type },
-      relatedNodes: filteredNodes,
-      relatedLinks: filteredLinks
-    }));
-  };
-
-  getFilteredGraph = (id, links, nodes) => {
-    return graphParser(id, links, nodes);
+      filteredNodes,
+      filteredLinks
+    });
   };
 
   linkSelector = ({ target: { id } }) =>
     this.setState({ linkView: id, nodeView: false });
 
   render() {
+    console.log("render", this.state);
     const { width, height, links, nodes, nodeView, linkView } = this.state;
+
     return (
       <GraphContext.Provider
         value={{
