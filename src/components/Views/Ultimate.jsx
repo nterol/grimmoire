@@ -56,24 +56,28 @@ export default class Ultimate extends Component {
   }
 
   componentDidUpdate(prevProps, { nodes: prevNodes, links: prevLinks }) {
-    const { nodes, links } = this.state;
-    console.log("DID UPDATE", this.state);
-    // if (!!relatedNodes.length && !!relatedLinks.length) {
-    //   FORCE.initForce(relatedNodes, relatedLinks);
-    //   FORCE.tick(this);
-    //   FORCE.drag();
-    // }
+    console.log("did update");
+    const { nodes, links, relatedLinks, relatedNodes } = this.state;
+
     if (prevNodes !== nodes || prevLinks !== links) {
-      FORCE.initForce(nodes, links);
-      FORCE.tick(this);
-      FORCE.drag();
+      if (!!relatedNodes.length && !!relatedLinks.length) {
+        FORCE.initForce(relatedNodes, relatedLinks);
+        FORCE.tick(this);
+        FORCE.drag();
+      } else {
+        FORCE.initForce(nodes, links);
+        FORCE.tick(this);
+        FORCE.drag();
+      }
     }
   }
 
   nodeSelector = ({ target: { id } }) => {
+    console.log("nodeSelector");
     const [nodeId, type] = id.split("_");
     const { nodes, links } = this.state;
     const { filteredNodes, filteredLinks } = graphParser(nodeId, links, nodes);
+    console.log("filteredNodes", filteredNodes);
     this.setState({
       nodeView: { nodeId, type },
       filteredNodes,
@@ -110,7 +114,7 @@ export default class Ultimate extends Component {
             <LinkList links={links} />
             <NodeList nodes={nodes} nodeSelector={this.nodeView} />
           </svg>
-          {nodeView || (linkView && <CenterNode />)}s
+          {(nodeView || linkView) && <CenterNode />}
         </div>
       </GraphContext.Provider>
     );
