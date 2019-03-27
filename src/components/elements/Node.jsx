@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
-import FORCE from "../../engine/force";
+import FORCE from "../../Engine/force";
 import * as d3 from "d3";
 
 import ProfilePic from "../../assets";

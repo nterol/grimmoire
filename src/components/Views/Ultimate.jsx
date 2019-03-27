@@ -8,9 +8,9 @@
 import React, { Component } from "react";
 import ResizeObserver from "resize-observer-polyfill";
 
-import FORCE from "../../engine/force";
-import { LinkList } from "../elements/LinkList";
-import { NodeList } from "../elements/NodeList";
+import FORCE from "../../Engine/force";
+import { LinkList } from "../Elements/LinkList";
+import { NodeList } from "../Elements/NodeList";
 import { CenterNode } from "../center-node/CenterNode";
 import { graphParser } from "../utils/graphParser";
 
