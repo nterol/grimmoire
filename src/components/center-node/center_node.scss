@@ -13,6 +13,11 @@
   .center-node::-webkit-scrollbar {
     display: none;
   }
+  &__close-button {
+    border: 1px solid green;
+    float: right;
+  }
+
   &__header {
     &__title {
       color: black;

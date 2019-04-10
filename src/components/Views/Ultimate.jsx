@@ -24,8 +24,7 @@ export default class Ultimate extends Component {
     links: graph.edges,
     filteredNodes: false,
     filteredLinks: false,
-    nodeView: false,
-    linkView: false,
+    graphElement: false,
     width: null,
     height: null
   };
@@ -79,26 +78,35 @@ export default class Ultimate extends Component {
     const { filteredNodes, filteredLinks } = graphParser(nodeId, links, nodes);
     console.log("filteredNodes", filteredNodes);
     this.setState({
-      nodeView: { nodeId, type },
+      graphElement: { nodeId, type },
       filteredNodes,
       filteredLinks
     });
   };
 
   linkSelector = ({ target: { id } }) =>
-    this.setState({ linkView: id, nodeView: false });
+    this.setState({ graphElement: { id, type: "role" } });
+
+  closeWorkSpace = () => {
+    console.log("close workspace");
+    this.setState({
+      filteredLinks: false,
+      filteredNodes: false,
+      graphElement: false
+    });
+  };
 
   render() {
     console.log("render", this.state);
-    const { width, height, links, nodes, nodeView, linkView } = this.state;
+    const { width, height, links, nodes, graphElement } = this.state;
 
     return (
       <GraphContext.Provider
         value={{
           nodeSelector: this.nodeSelector,
           linkSelector: this.linkSelector,
-          linkView,
-          nodeView
+          closeWorkSpace: this.closeWorkSpace,
+          graphElement
         }}
       >
         <div
@@ -114,7 +122,7 @@ export default class Ultimate extends Component {
             <LinkList links={links} />
             <NodeList nodes={nodes} nodeSelector={this.nodeView} />
           </svg>
-          {(nodeView || linkView) && <CenterNode />}
+          {graphElement && <CenterNode graphElement={graphElement} />}
         </div>
       </GraphContext.Provider>
     );

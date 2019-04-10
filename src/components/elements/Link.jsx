@@ -2,7 +2,7 @@ import React, { PureComponent } from "react";
 import ReactDOM from "react-dom";
 import * as d3 from "d3";
 
-import { MainContext } from "../Main";
+import { GraphContext } from "../Views/Ultimate";
 
 const colorPalette = {
   C: "#EF476F",
@@ -14,14 +14,14 @@ const colorPalette = {
 class RawLink extends PureComponent {
   componentDidMount() {
     this.d3Link = d3.select(ReactDOM.findDOMNode(this)).datum(this.props.data);
-    this.line.addEventListener("click", this.props.context.linkViewer);
+    this.line.addEventListener("click", this.props.context.linkSelector);
   }
 
   componentDidUpdate() {
     this.d3Link.datum(this.props.data); // .call(FORCE.updateLink);
   }
   componentWillUnmount() {
-    this.line.removeEventListener("click", this.props.context.linkViewer);
+    this.line.removeEventListener("click", this.props.context.linkSelector);
   }
   render() {
     const {
@@ -52,7 +52,7 @@ class RawLink extends PureComponent {
 }
 
 export const Link = React.forwardRef((props, ref) => (
-  <MainContext.Consumer>
+  <GraphContext.Consumer>
     {context => <RawLink {...props} context={context} ref={ref} />}
-  </MainContext.Consumer>
+  </GraphContext.Consumer>
 ));

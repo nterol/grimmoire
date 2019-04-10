@@ -37,7 +37,7 @@ class RawNode extends Component {
     const {
       data: { name, id, type, anon = false, x = 0, y = 0 }
     } = this.props;
-    console.log("x", x, "y", y);
+
     // const cx = Math.max(30, Math.min(FORCE.width - 30, x));
     // const cy = Math.max(30, Math.min(FORCE.height - 30, y));
 
