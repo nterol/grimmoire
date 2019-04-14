@@ -8,7 +8,7 @@
     "d3": "^5.7.0",
     "eslint-config-prettier": "^3.3.0",
     "eslint-plugin-prettier": "^3.0.1",
-    "node-sass": "^4.10.0",
+    "node-sass": "^4.11.0",
     "prettier": "^1.16.4",
     "ramda": "^0.26.1",
     "react": "^16.8.6",
