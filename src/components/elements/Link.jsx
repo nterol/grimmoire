@@ -2,7 +2,7 @@ import React, { PureComponent } from "react";
 import ReactDOM from "react-dom";
 import * as d3 from "d3";
 
-import { GraphContext } from "../Views/Ultimate";
+import { GraphContext } from "../views/Ultimate";
 
 const colorPalette = {
   C: "#EF476F",

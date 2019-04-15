@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
-import FORCE from "../../Engine/force";
+import FORCE from "../../engine/force";
 import * as d3 from "d3";
 
 import ProfilePic from "../../assets";
 
-import { GraphContext } from "../Views/Ultimate";
+import { GraphContext } from "../views/Ultimate";
 
 class RawNode extends Component {
   state = {

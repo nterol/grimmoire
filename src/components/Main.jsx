@@ -3,8 +3,8 @@ import React, { Component, Suspense, lazy } from "react";
 
 export const MainContext = React.createContext();
 
-const Sider = lazy(() => import("./Sider/Sider"));
-const Ultimate = lazy(() => import("./Views/Ultimate"));
+const Sider = lazy(() => import("./sider/Sider"));
+const Ultimate = lazy(() => import("./views/Ultimate"));
 
 class Main extends Component {
   state = {
@@ -20,7 +20,6 @@ class Main extends Component {
     this.setState({ linkView: id, nodeView: false });
 
   nodeViewer = ({ target: { id } }) => {
-    console.log("coucou");
     const [nodeId, type] = id.split("_");
     this.setState({ linkView: false, nodeView: { nodeId, type } });
 

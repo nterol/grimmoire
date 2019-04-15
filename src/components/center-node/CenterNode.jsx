@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { GraphContext } from "../Views/Ultimate";
+import { GraphContext } from "../views/Ultimate";
 
 export const CenterNode = ({ graphElement }) => {
   const [nodeInfo, setNodeInfo] = useState({});

@@ -8,9 +8,9 @@
 import React, { Component } from "react";
 import ResizeObserver from "resize-observer-polyfill";
 
-import FORCE from "../../Engine/force";
-import { LinkList } from "../Elements/LinkList";
-import { NodeList } from "../Elements/NodeList";
+import FORCE from "../../engine/force";
+import { Linklist } from "../elements/Linklist";
+import { Nodelist } from "../elements/Nodelist";
 import { CenterNode } from "../center-node/CenterNode";
 import { graphParser } from "../utils/graphParser";
 
@@ -119,8 +119,8 @@ export default class Ultimate extends Component {
             width={width}
             height={height}
           >
-            <LinkList links={links} />
-            <NodeList nodes={nodes} nodeSelector={this.nodeView} />
+            <Linklist links={links} />
+            <Nodelist nodes={nodes} nodeSelector={this.nodeView} />
           </svg>
           {graphElement && <CenterNode graphElement={graphElement} />}
         </div>
