@@ -61,7 +61,7 @@ const FORCE = (function(nsp) {
         if (x > nsp.width) x = nsp.width - 200;
         if (y < 0) y = 200;
         if (y > nsp.height) y = nsp.height;
-        return "translate(" + (x - 60) + "," + (y - 60) + ")";
+        return "translate(" + x + "," + y + ")";
       });
       // .attr("cx", ({ x }) => {
       //   return (x = Math.max(30, Math.min(width - 30, x)));
@@ -104,13 +104,19 @@ const FORCE = (function(nsp) {
           .on("drag", dragging)
           .on("end", dragEnded)
       ),
+    tickRef = ref => {
+      const d3Graph = d3.select(ref);
+      nsp.force.on("tick", () => {
+        d3Graph.call(updateGraph);
+      });
+    },
     tick = that => {
-      // console.log("tick", that);
       that.d3Graph = d3.select(ReactDOM.findDOMNode(that));
       nsp.force.on("tick", () => {
         that.d3Graph.call(updateGraph);
       });
     };
+
   // color = d3.scaleOrdinal(d3.schemeCategory10),
 
   nsp.height = height;
@@ -127,6 +133,8 @@ const FORCE = (function(nsp) {
   nsp.dragEnded = dragEnded;
   nsp.drag = drag;
   nsp.tick = tick;
+  nsp.tickRef = tickRef;
+
   // nsp.width = width;
   // nsp.height = height;
   // nsp.resetWidth = resetWidth;

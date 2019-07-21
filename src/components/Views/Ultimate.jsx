@@ -1,6 +1,6 @@
 /* 
     Goal of this version is to merge deeply D3 
-    in React, inpired from this snippet:  
+    in React, inpired from Pagethis snippet:  
     https://stackoverflow.com/questions/30330646/how-to-create-a-d3-force-layout-graph-using-react
     in order to avoid overCalling of this.setstate()
 */
