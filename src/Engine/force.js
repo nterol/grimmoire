@@ -78,7 +78,6 @@ const FORCE = (function(nsp) {
         .attr("y2", d => d.target.y);
     },
     updateGraph = selection => {
-      // console.log(selection, width, height);
       selection.selectAll(".node").call(updateNode);
       selection.selectAll(".link").call(updateLink);
     },

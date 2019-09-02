@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import * as d3 from "d3";
+import { Link } from "react-router-dom";
 
 export const Edges = ({ edges }) =>
   edges.map(edge => <Edge key={edge.id} edge={edge} />);
@@ -30,7 +31,8 @@ function Edge({ edge }) {
       fill="black"
       stroke="black"
       strokeWidth="6"
-      strokeLinecap="round"
+      // strokeDasharray="4"
+      // strokeLinecap="round"
       className="link"
     />
   );
@@ -56,16 +58,19 @@ function Summit({ summit }) {
       ref={summitRef}
       transform={`translate(${x > 0 ? x : 0}, ${y})`}
     >
-      <circle r="20" />
+      <Link to={`/summit/${id}`}>
+        <circle r="40" stroke="black"></circle>
+      </Link>
       <text
         id={id}
-        dx="10"
-        dy="90"
+        dx="0"
+        dy="0"
         fontWeight="600"
-        textAnchor="start"
+        textAnchor="middle"
         alignmentBaseline="middle"
         fontSize="10px"
         fontFamily="Futura"
+        fill="white"
       >
         {title}
       </text>

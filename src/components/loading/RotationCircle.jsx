@@ -20,6 +20,7 @@ const circleRotation = keyframes`
 `;
 
 const Container = styled.div`
+  padding: 16px;
   display: inline-block;
   transform: translateZ(1px);
 
