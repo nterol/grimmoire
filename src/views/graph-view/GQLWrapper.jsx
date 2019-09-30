@@ -28,8 +28,6 @@ const GET_WORK_PLACE = gql`
 `;
 
 const GraphViewWrapper = props => {
-  console.log(props);
-
   return (
     <Query
       query={GET_WORK_PLACE}
