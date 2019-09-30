@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import palette from "../theme";
+import palette from "../../components/theme";
 
-import MenuContent from "./MenuContent";
+import GQLWrapper from "./GQLWrapper";
 
 export const Container = styled.div`
   color: white;
@@ -14,18 +14,23 @@ export const Container = styled.div`
   z-index: 1;
   top: 0;
   left: 0;
-  background-color: ${palette.sombre};
+  background-color: ${palette.black};
   overflow-x: hidden;
   padding-top: 20px;
+`;
+
+export const Logo = styled.span`
+  color: #fff;
+  font-size: 18px;
+  font-weight: bold;
 `;
 
 const Menu = () => (
   <Container>
     <Link to="/">
-      <span>Corpus</span>
+      <Logo>Corpus</Logo>
     </Link>
-
-    <MenuContent />
+    <GQLWrapper />
   </Container>
 );
 

@@ -1,9 +1,9 @@
 import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
 
-import useResize from "../hooks/useResize";
+import useResize from "../../hooks/useResize";
 
-import { Summits, Edges } from "./GraphElement";
+import { Summits, Edges } from "../GraphElement";
 import FORCE from "../../engine/force";
 
 const Container = styled.div`
@@ -13,7 +13,7 @@ const Container = styled.div`
 
 const SVG = styled.svg`
   position: relative;
-  background-color: #e1e5db;
+  background-color: #fff;
 `;
 
 function GraphView({ graph }) {

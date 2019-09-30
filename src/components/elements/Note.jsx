@@ -2,16 +2,13 @@ import React from "react";
 import styled from "styled-components";
 
 const HeaderContainer = styled.div`
-  background: #de6262;
   padding: 64px 32px;
-  background: linear-gradient(to right, #ffb88c, #de6262);
-
   width: 100%;
   height: 25%;
 
   h1 {
-    color: #fff;
-    font-size: 32Mpx;
+    color: #000;
+    font-size: 32mpx;
     font-weight: bold;
   }
 `;

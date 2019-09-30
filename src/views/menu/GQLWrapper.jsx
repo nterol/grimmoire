@@ -18,7 +18,7 @@ const GRAPH_LIST = gql`
   }
 `;
 
-const MenuContent = () => (
+const GQLWrapper = () => (
   <Query query={GRAPH_LIST}>
     {({ loading, error, data }) => {
       if (loading) return <div style={{ margin: "16px" }}>loading</div>;
@@ -28,4 +28,4 @@ const MenuContent = () => (
   </Query>
 );
 
-export default MenuContent;
+export default GQLWrapper;
