@@ -1,16 +1,16 @@
 import React from 'react';
 import { useQuery } from 'react-apollo';
 
-import RotationCircle from "../Loading/RotationCircle";
+import RotationCircle from '../Loading/RotationCircle';
 
-const Error = () => <div>Error</div>
+const Error = () => <div>Error</div>;
 
-function QueryWrapper({query, children,}) {
-    const {loading, data, error} = useQuery(query);
+function QueryWrapper({ query, children }) {
+  const { loading, data, error } = useQuery(query);
 
-    if (error) return <Error />
-    if (loading || !data) return <RotationCircle />
-    return children
+  if (error) return <Error />;
+  if (loading || !data) return <RotationCircle />;
+  return children;
 }
 
 export default QueryWrapper;

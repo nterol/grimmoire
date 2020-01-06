@@ -1,15 +1,21 @@
-import React from "react";
+import React from 'react';
 
-import {BodyContainer, HeaderContainer, Container, Left, Center, Right} from './styles';
-
+import {
+  BodyContainer,
+  HeaderContainer,
+  Container,
+  Left,
+  Center,
+  Right
+} from './styles';
 
 const Note = ({ summit }) => {
   return (
     <Container>
       <Left />
       <Center>
-      <HeaderContainer>
-        <h1>{summit.title}</h1>
+        <HeaderContainer>
+          <h1>{summit.title}</h1>
         </HeaderContainer>
         <BodyContainer>
           <p>{summit.body}</p>

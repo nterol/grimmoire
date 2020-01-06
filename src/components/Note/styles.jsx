@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const HeaderContainer = styled.div`
   padding: 64px 32px;
@@ -36,10 +36,10 @@ export const Left = styled(Column)``;
 export const Right = styled(Column)``;
 
 export const Center = styled(Column)`
-border: 1px solid palegrey;
-background: white;
-flex-grow: 2;
-border-radius: 5px;
-box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
-overflow: scroll;
+  border: 1px solid palegrey;
+  background: white;
+  flex-grow: 2;
+  border-radius: 5px;
+  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
+  overflow: scroll;
 `;

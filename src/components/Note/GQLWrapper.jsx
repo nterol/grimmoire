@@ -1,9 +1,9 @@
-import React from "react";
-import { Query } from "react-apollo";
-import { gql } from "apollo-boost";
+import React from 'react';
+import { Query } from 'react-apollo';
+import { gql } from 'apollo-boost';
 
-import RotationCircle from "../Loading/RotationCircle";
-import Note from "./Note";
+import RotationCircle from '../Loading/RotationCircle';
+import Note from './Note';
 
 const GET_SUMMIT = gql`
   query summit($summitId: ID!) {
@@ -32,7 +32,7 @@ function GQLWrapper(props) {
         console.log(data);
         if (loading) return <RotationCircle />;
         if (error) return <div>Summit not found</div>;
-        console.log("SUMMIT", data);
+        console.log('SUMMIT', data);
         return <Note summit={data.summit} />;
       }}
     </Query>
