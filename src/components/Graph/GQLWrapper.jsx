@@ -2,7 +2,7 @@ import React from "react";
 import { Query } from "react-apollo";
 import { gql } from "apollo-boost";
 
-import GraphView from "./Graph";
+import Graph from "./Graph";
 import RotationCircle from "../Loading/RotationCircle";
 
 const GET_WORK_PLACE = gql`
@@ -38,7 +38,7 @@ const GraphViewWrapper = props => {
         if (loading) return <RotationCircle />;
         if (error) return <div>Error</div>;
 
-        return <GraphView graph={data.graph} />;
+        return <Graph graph={data.graph} />;
       }}
     </Query>
   );

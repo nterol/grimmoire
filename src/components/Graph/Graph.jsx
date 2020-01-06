@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 
 import useResize from "../../hooks/useResize";
 
-import { Summits, Edges } from "../GraphElement";
+import { Summits, Edges } from "./GraphElement";
 import {Container, SVG} from './styles';
 import FORCE from "../../engine/force";
 
