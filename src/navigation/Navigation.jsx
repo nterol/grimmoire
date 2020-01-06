@@ -5,7 +5,7 @@ import { Switch, Route } from "react-router-dom";
 import Hello from "../components/Hello";
 
 import { GraphView } from "../views/graph-view";
-import { NoteView } from "../views/note-view";
+import { Note } from "../components/Note";
 import { Page } from "./styles";
 
 function Navigation() {
@@ -17,7 +17,7 @@ function Navigation() {
           path="/graphs/:slug"
           render={props => <GraphView {...props} />}
         />
-        <Route path="/summit/:slug" render={props => <NoteView {...props} />} />
+        <Route path="/summit/:slug" render={props => <Note {...props} />} />
       </Switch>
     </Page>
   );

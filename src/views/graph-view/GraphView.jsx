@@ -1,20 +1,10 @@
 import React, { useEffect, useRef } from "react";
-import styled from "styled-components";
 
 import useResize from "../../hooks/useResize";
 
 import { Summits, Edges } from "../GraphElement";
+import {Container, SVG} from './styles';
 import FORCE from "../../engine/force";
-
-const Container = styled.div`
-  border: 1px solid;
-  height: 100vh;
-`;
-
-const SVG = styled.svg`
-  position: relative;
-  background-color: #fff;
-`;
 
 function GraphView({ graph }) {
   const gContainer = useRef(null);
