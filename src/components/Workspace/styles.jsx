@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import { Container } from '../Common/styles';
+
 export const HeaderContainer = styled.div`
   padding: 64px 32px;
   width: 100%;
@@ -20,7 +22,7 @@ export const BodyContainer = styled.div`
   }
 `;
 
-export const Container = styled.div`
+export const WorkContainer = styled(Container)`
   display: flex;
   flex-direction: row;
   padding: 16px;
