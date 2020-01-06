@@ -6,10 +6,10 @@ import { InMemoryCache } from "apollo-cache-inmemory";
 import { ApolloProvider } from "react-apollo";
 import { BrowserRouter } from "react-router-dom";
 
-import "./components/styles/app.scss";
-
 import Navigation from "./navigation/Navigation";
-import { Menu } from "./views/menu/";
+import Menu  from "./components/Menu/";
+
+require("typeface-roboto");
 
 const client = new ApolloClient({
   cache: new InMemoryCache(),
@@ -31,15 +31,21 @@ const client = new ApolloClient({
   uri: "https://afternoon-dusk-85001.herokuapp.com/"
 });
 
-const Globalstyle = createGlobalStyle`
+const GlobalStyle = createGlobalStyle`
+html {
+  font-family: roboto;
+}
 
+body {
+  margin: 0px
+}
 `;
 
 function App() {
   return (
     <BrowserRouter>
       <ApolloProvider connectToDevTools client={client}>
-        <Globalstyle />
+        <GlobalStyle />
         <Menu />
         <Navigation />
       </ApolloProvider>

@@ -2,7 +2,7 @@ import React from "react";
 import { Query } from "react-apollo";
 import { gql } from "apollo-boost";
 
-import RotationCircle from "../loading/RotationCircle";
+import RotationCircle from "../Loading/RotationCircle";
 import Note from "./Note";
 
 const GET_SUMMIT = gql`

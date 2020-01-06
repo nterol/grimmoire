@@ -6,7 +6,7 @@ import { Summits, Edges } from "../GraphElement";
 import {Container, SVG} from './styles';
 import FORCE from "../../engine/force";
 
-function GraphView({ graph }) {
+function Graph({ graph }) {
   const gContainer = useRef(null);
   const canva = useRef(null);
 
@@ -43,4 +43,4 @@ function GraphView({ graph }) {
   );
 }
 
-export default GraphView;
+export default Graph;

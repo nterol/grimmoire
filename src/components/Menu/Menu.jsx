@@ -8,9 +8,11 @@ import GQLWrapper from "./GQLWrapper";
 function Menu() {
   return (
     <Container>
+      <Logo>
       <Link to="/">
-        <Logo>Corpus</Logo>
+        Corpus
       </Link>
+      </Logo>
       <GQLWrapper />
     </Container>
   );

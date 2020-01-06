@@ -4,8 +4,8 @@ import { Switch, Route } from "react-router-dom";
 
 import Hello from "../components/Hello";
 
-import { GraphView } from "../views/graph-view";
-import { Note } from "../components/Note";
+import  Graph from "../components/Graph";
+import Note from "../components/Note";
 import { Page } from "./styles";
 
 function Navigation() {
@@ -15,7 +15,7 @@ function Navigation() {
         <Route path="/" exact component={Hello} />
         <Route
           path="/graphs/:slug"
-          render={props => <GraphView {...props} />}
+          render={props => <Graph {...props} />}
         />
         <Route path="/summit/:slug" render={props => <Note {...props} />} />
       </Switch>

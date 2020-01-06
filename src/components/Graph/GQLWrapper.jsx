@@ -2,8 +2,8 @@ import React from "react";
 import { Query } from "react-apollo";
 import { gql } from "apollo-boost";
 
-import GraphView from "./GraphView";
-import RotationCircle from "../../components/loading/RotationCircle";
+import GraphView from "./Graph";
+import RotationCircle from "../Loading/RotationCircle";
 
 const GET_WORK_PLACE = gql`
   query graph($graphId: ID!) {
