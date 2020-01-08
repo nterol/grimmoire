@@ -5,12 +5,8 @@
   "dependencies": {
     "ajv": "^6.10.2",
     "apollo-boost": "^0.4.4",
-    "bulma": "^0.7.2",
     "d3": "^5.12.0",
     "graphql": "^14.5.8",
-    "module-alias": "^2.2.2",
-    "node-sass": "^4.12.0",
-    "ramda": "^0.26.1",
     "react": "^16.10.1",
     "react-apollo": "^3.1.1",
     "react-dom": "^16.10.1",
@@ -47,9 +43,5 @@
     "prettier": "^1.19.1",
     "resize-observer-polyfill": "^1.5.1",
     "webpack-bundle-analyzer": "^3.3.2"
-  },
-  "_moduleAliases": {
-    "@hooks": "src/hooks",
-    "@components": "src/components"
   }
 }

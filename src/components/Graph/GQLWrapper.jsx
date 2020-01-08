@@ -1,9 +1,9 @@
-import React from "react";
-import { Query } from "react-apollo";
-import { gql } from "apollo-boost";
+import React from 'react';
+import { Query } from 'react-apollo';
+import { gql } from 'apollo-boost';
 
-import Graph from "./Graph";
-import RotationCircle from "../Loading/RotationCircle";
+import Graph from './Graph';
+import RotationCircle from '../Loading/RotationCircle';
 
 const GET_WORK_PLACE = gql`
   query graph($graphId: ID!) {
@@ -34,7 +34,7 @@ const GraphViewWrapper = props => {
       variables={{ graphId: props.match.params.slug }}
     >
       {({ loading, error, data }) => {
-        console.log("DATA", data);
+        console.log('DATA', data);
         if (loading) return <RotationCircle />;
         if (error) return <div>Error</div>;
 
