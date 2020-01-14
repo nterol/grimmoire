@@ -1,22 +1,22 @@
-import React from "react";
-import { createGlobalStyle } from "styled-components";
+import React from 'react';
+import { createGlobalStyle } from 'styled-components';
 
-import ApolloClient, { gql } from "apollo-boost";
-import { InMemoryCache } from "apollo-cache-inmemory";
-import { ApolloProvider } from "react-apollo";
-import { BrowserRouter } from "react-router-dom";
+import ApolloClient, { gql } from 'apollo-boost';
+import { InMemoryCache } from 'apollo-cache-inmemory';
+import { ApolloProvider } from 'react-apollo';
+import { BrowserRouter } from 'react-router-dom';
 
-import Navigation from "./navigation/Navigation";
-import Menu  from "./components/Menu/";
+import Navigation from './navigation/Navigation';
+import Menu from './components/Menu/';
 
-require("typeface-roboto");
+require('typeface-roboto');
 
 const client = new ApolloClient({
   cache: new InMemoryCache(),
   resolvers: {
     Mutation: {
       toggleReduce: (_root, variables, { cache, getCacheKey }) => {
-        const id = getCacheKey({ __typename: "reduce", id: variables.id });
+        const id = getCacheKey({ __typename: 'reduce', id: variables.id });
         const fragment = gql`
           fragment toggleReduceState  {
             true
@@ -28,7 +28,7 @@ const client = new ApolloClient({
       }
     }
   },
-  uri: "https://afternoon-dusk-85001.herokuapp.com/"
+  uri: 'https://afternoon-dusk-85001.herokuapp.com/'
 });
 
 const GlobalStyle = createGlobalStyle`
@@ -46,7 +46,7 @@ function App() {
     <BrowserRouter>
       <ApolloProvider connectToDevTools client={client}>
         <GlobalStyle />
-        <Menu />
+        <Menu reduce={true} />
         <Navigation />
       </ApolloProvider>
     </BrowserRouter>
