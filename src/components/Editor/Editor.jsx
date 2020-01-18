@@ -3,13 +3,13 @@ import React, { useState, useMemo, useCallback } from 'react';
 import { createEditor } from 'slate';
 import { Slate, Editable, withReact } from 'slate-react';
 
-import { CodeBlock, ParagraphBlock } from './EditorElements';
+import { CodeBlock, ParagraphBlock } from './EditorElements/';
 
-function Editor() {
+function Editor({ note }) {
   const editor = useMemo(() => withReact(createEditor()), []);
 
   const [value, setValue] = useState([
-    { type: 'paragraph', children: [{ text: ' A simple paragraph' }] }
+    { type: 'paragraph', children: [{ text: note.body }] }
   ]);
 
   const handleKeyDown = event => {

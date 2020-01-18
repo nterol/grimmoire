@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import palette from '../theme';
 
 export const Container = styled.div`
   height: 100vh;
@@ -7,5 +6,5 @@ export const Container = styled.div`
 
 export const SVG = styled.svg`
   position: relative;
-  background-color: ${palette.bg};
+  background-color: ${({ theme: { palette } }) => palette.bg};
 `;

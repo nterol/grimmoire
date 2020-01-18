@@ -1,12 +1,13 @@
 import React from 'react';
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle, ThemeProvider } from 'styled-components';
 
 import ApolloClient, { gql } from 'apollo-boost';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { ApolloProvider } from 'react-apollo';
 import { BrowserRouter } from 'react-router-dom';
+import theme from './components/theme';
 
-import Navigation from './navigation/Navigation';
+import Navigation from './pages/Navigation';
 import Menu from './components/Menu/';
 
 require('typeface-roboto');
@@ -37,19 +38,26 @@ html {
 }
 
 body {
-  margin: 0px
+  margin: 0px;
 }
+a {text-decoration: none}
+a:visited { text-decoration: none; }
+a:hover { text-decoration: none; color:blue; }
+a:focus { text-decoration: none; color:yellow; }
+a:hover, a:active { text-decoration: none; color:black }
 `;
 
 function App() {
   return (
-    <BrowserRouter>
-      <ApolloProvider connectToDevTools client={client}>
-        <GlobalStyle />
-        <Menu reduce={true} />
-        <Navigation />
-      </ApolloProvider>
-    </BrowserRouter>
+    <ThemeProvider theme={theme}>
+      <BrowserRouter>
+        <ApolloProvider connectToDevTools client={client}>
+          <GlobalStyle />
+          <Menu reduce={true} />
+          <Navigation />
+        </ApolloProvider>
+      </BrowserRouter>
+    </ThemeProvider>
   );
 }
 

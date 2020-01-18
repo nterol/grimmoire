@@ -1,8 +1,8 @@
 import React, { useEffect, useRef } from 'react';
 
 import useResize from '../../hooks/useResize';
-import Summits from '../GraphElements/Summits';
-import Edges from '../GraphElements/Edges';
+import Summits from '../../components/GraphElements/Summits';
+import Edges from '../../components/GraphElements/Edges';
 import { Container, SVG } from './styles';
 import FORCE from '../../engine/force';
 
