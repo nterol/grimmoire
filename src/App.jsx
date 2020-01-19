@@ -40,11 +40,10 @@ html {
 body {
   margin: 0px;
 }
-a {text-decoration: none}
-a:visited { text-decoration: none; }
-a:hover { text-decoration: none; color:blue; }
-a:focus { text-decoration: none; color:yellow; }
-a:hover, a:active { text-decoration: none; color:black }
+a,a:visited,a:hover,
+a:focus,
+a:hover,
+a:active { text-decoration: none; }
 `;
 
 function App() {

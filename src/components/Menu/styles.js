@@ -15,13 +15,14 @@ export const Container = styled.div`
 `;
 
 export const Logo = styled.h1`
-  color: ${props => props.theme.palette.sombre};
+  color: ${props => props.theme.palette.blue};
   font-size: 32px;
   font-weight: bold;
   a {
     text-decoration: none;
   }
-  a:visited {
-    color: ${props => props.theme.palette.sombre};
+  a:visited,
+  a:active {
+    color: ${props => props.theme.palette.blue};
   }
 `;

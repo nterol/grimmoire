@@ -1,8 +1,10 @@
 import React from 'react';
 
+import { Code } from './styles';
+
 const CodeBlock = ({ attributes, children }) => (
   <pre {...attributes}>
-    <code>{children}</code>
+    <Code>{children}</Code>
   </pre>
 );
 

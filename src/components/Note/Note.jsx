@@ -1,18 +1,12 @@
 import React from 'react';
 
-import { BodyContainer, HeaderContainer, Center } from './styles';
-import Editor from '../Editor';
+import { Center } from './styles';
+import WriterBlock from '../WriterBlock';
 
 const Note = ({ summit }) => {
   return (
     <Center>
-      {/* <HeaderContainer>
-        <h1>{summit.title}</h1>
-      </HeaderContainer>
-      <BodyContainer>
-        <p>{summit.body}</p>
-      </BodyContainer> */}
-      <Editor note={summit} />
+      <WriterBlock note={summit} />
     </Center>
   );
 };
