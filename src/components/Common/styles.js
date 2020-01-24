@@ -1,9 +1,21 @@
 import styled from 'styled-components';
 
-import palette from '../theme';
-
 export const Container = styled.div`
-  background: ${palette.bg};
+  background: ${({ theme: { palette } }) => palette.bg};
 `;
 
-export default {};
+export const Flex = styled.div`
+  display: flex;
+`;
+
+export const Row = styled(Flex)`
+  flex-direction: row;
+`;
+
+export const Col = styled(Flex)`
+  flex-direction: column;
+`;
+
+export const ColG1 = styled.div`
+  flex-grow: 1;
+`;

@@ -2,9 +2,9 @@ import React from 'react';
 
 import { Switch, Route } from 'react-router-dom';
 
-import Hello from '../components/Hello';
-import Graph from '../components/Graph';
-import Workspace from '../components/Workspace';
+import Hello from './Home/Hello';
+import Graph from './Graph';
+import Workspace from './Workspace';
 import { Page } from './styles';
 
 function Navigation() {

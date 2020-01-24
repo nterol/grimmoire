@@ -1,11 +1,15 @@
-const palette = {
-  logo: '#5EC266',
-  sombre: '#3E4A3D',
-  black: '#000',
-  light: '#A1AFA0',
-  notification: '#007DE2',
-  alert: '#E37423',
-  bg: '#faf6f0'
+const theme = {
+  palette: {
+    logo: '#5EC266',
+    sombre: '#3E4A3D',
+    black: '#000',
+    light: '#A1AFA0',
+    notification: '#007DE2',
+    alert: '#E37423',
+    bg: '#faf6f0',
+    blue: '#14134f',
+    blueLight: '#242168'
+  }
 };
 
-export default palette;
+export default theme;

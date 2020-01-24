@@ -1,8 +1,6 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import styled from "styled-components";
-
-import palette from '../theme';
+import React from 'react';
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 
 const List = styled.div`
   margin: 16px 8px;
@@ -10,10 +8,14 @@ const List = styled.div`
   display: flex;
   flex-direction: column;
   a {
-    color: ${palette.sombre};
+    color: ${({ theme: palette }) => palette.blue};
     font-weight: bold;
     margin-bottom: 24px;
     text-decoration: none;
+  }
+
+  a:visited {
+    color: ${({ theme: { palette } }) => palette.blueLight};
   }
 `;
 
