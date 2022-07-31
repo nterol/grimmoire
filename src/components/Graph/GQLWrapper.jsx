@@ -3,7 +3,7 @@ import { Query } from 'react-apollo';
 import { gql } from 'apollo-boost';
 
 import Graph from './Graph';
-import RotationCircle from '../Loading/RotationCircle';
+import RotationCircle from '../Loadings/RotationCirclee';
 
 const GET_WORK_PLACE = gql`
   query graph($graphId: ID!) {

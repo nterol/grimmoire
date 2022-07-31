@@ -23,8 +23,8 @@ const client = new ApolloClient({
           }
         `;
 
-        const toggle = cache.readFragment({ fragment, id });
-        const data = {};
+        // const toggle = cache.readFragment({ fragment, id });
+        // const data = {};
       }
     }
   },

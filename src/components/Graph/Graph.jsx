@@ -4,7 +4,7 @@ import useResize from '../../hooks/useResize';
 import Summits from '../GraphElements/Summits';
 import Edges from '../GraphElements/Edges';
 import { Container, SVG } from './styles';
-import FORCE from '../../engine/force';
+import FORCE from '../../Engine/force';
 
 function Graph({ graph }) {
   const gContainer = useRef(null);

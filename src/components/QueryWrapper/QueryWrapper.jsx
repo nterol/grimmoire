@@ -1,7 +1,7 @@
 import React from 'react';
 import { useQuery } from 'react-apollo';
 
-import RotationCircle from '../Loading/RotationCircle';
+import RotationCircle from '../Loadings/RotationCircle';
 
 const Error = () => <div>Error</div>;
 
